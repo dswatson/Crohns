@@ -102,7 +102,9 @@ Count data are often presumed to follow a negative binomial distribution, which 
 plot_dispersion(dds[keep, ])
 ```
 
+<p align='center'>
 <img src="AHR_markdown_files/figure-markdown_github/meandisp-1.png" style="display: block; margin: auto;" />
+</p>
 
 This figure looks about right. Note how the model shrinks the observed mean and dispersion of genes in the bottom left up toward the trend line. This is evident from the fact that no blue dots, which represent posterior estimates, are anywhere near those black dots. The so-called outliers (red dots), defined as genes with posterior log dispersion values more than two median absolute deviations from the trend, will be automatically removed during differential expression testing.
 
@@ -116,7 +118,9 @@ plot_density(rld, group = list(Condition = clin$Condition),
              xlab = 'rlog Transformed Counts')
 ```
 
+<p align='center'>
 <img src="AHR_markdown_files/figure-markdown_github/dens-1.png" style="display: block; margin: auto;" />
+</p>
 
 There are some irregular curves in this density plot, suggesting either that some samples are outliers or that the normalization procedure has failed to smooth out expression patterns across the genome. Further plots will shed some more light.
 
@@ -131,7 +135,9 @@ plot_similarity(rld, group = list(Condition = clin$Condition, Sex = clin$Sex),
                 pal_covar = c('viridis', 'Spectral'))
 ```
 
+<p align='center'>
 <img src="AHR_markdown_files/figure-markdown_github/sim_mat-1.png" style="display: block; margin: auto;" />
+</p>
 
 There are three clear outliers in the top left corner, including one sample that looks especially out of place. To get a closer look at these samples, we look at some projections.
 
@@ -148,7 +154,9 @@ We use a number of dimensionality reduction techniques to visually inspect for o
 plot_pca(rld, group = list(Patient = clin$Patient), label = TRUE)
 ```
 
+<p align='center'>
 <img src="AHR_markdown_files/figure-markdown_github/pca-1.png" style="display: block; margin: auto;" />
+</p>
 
 The extreme outlier in the data is 1911B-D. Samples 2502A-F and 2502A-CH also appear quite problematic. Identical results were found for the Salmon data, suggesting this problem does not stem from the pseudo-alignment but rather some more fundamental issue with these samples. We remove them from the data and rerun the PCA.
 
@@ -173,7 +181,9 @@ rld <- assay(rlog(dds[keep, ]))
 plot_pca(rld, group = list(Patient = clin$Patient), label = TRUE)
 ```
 
+<p align='center'>
 <img src="AHR_markdown_files/figure-markdown_github/pca2-1.png" style="display: block; margin: auto;" />
+</p>
 
 This projection looks much more palatable. We can clearly see samples clustering by patient, which is to be expected. We review several more projections to confirm that the data have stabilized.
 
@@ -185,7 +195,9 @@ Kernel PCA (KPCA) is a nonlinear variant of PCA that uses a Gaussian radial basi
 plot_kpca(rld, group = list(Patient = clin$Patient), label = TRUE)
 ```
 
+<p align='center'>
 <img src="AHR_markdown_files/figure-markdown_github/kpca-1.png" style="display: block; margin: auto;" />
+</p>
 
 This plot is fairly similar to the linear PCA.
 
@@ -197,7 +209,9 @@ Another popular nonlinear embedding technique is [t-distributed stochastic neigh
 plot_tsne(rld, group = list(Patient = clin$Patient), label = TRUE)
 ```
 
+<p align='center'>
 <img src="AHR_markdown_files/figure-markdown_github/tsne-1.png" style="display: block; margin: auto;" />
+</p>
 
 The t-SNE plot suggests a somewhat more uniform spread of the data, although with similar overall trends.
 
@@ -212,7 +226,9 @@ plot_drivers(rld, tmp, index = 'SampleID', block = 'Patient', unblock = 'Age',
              alpha = 0.05, p.adj = 'fdr', n.pc = 10)
 ```
 
+<p align='center'>
 <img src="AHR_markdown_files/figure-markdown_github/drivers-1.png" style="display: block; margin: auto;" />
+</p>
 
 This plot immediately reveals some clear structure in the data. First of all, as indicated by the projections, Patient is way and by far the greatest driver of omic variation. But even controlling for Patient as a blocking variable, several significant associations remain between top PCs and recorded covariates like Condition and Sex. Age is less predictive, although RIN is correlated with PCs 2-4, suggesting that read integrity accounts for some of the variance in gene expression.
 
@@ -282,7 +298,9 @@ plot_md(res_h1, probes = 'EnsemblID',
         title = 'Mean-Difference Plot:\nAgonist vs. Control')
 ```
 
+<p align='center'>
 <img src="AHR_markdown_files/figure-markdown_github/h1_scatter-1.png" style="display: block; margin: auto;" />
+</p>
 
 ``` r
 # Volcano plot
@@ -290,7 +308,9 @@ plot_volcano(res_h1, probes = 'EnsemblID', y = 'p',
              title = 'Volcano Plot:\nAgonist vs. Control')
 ```
 
+<p align='center'>
 <img src="AHR_markdown_files/figure-markdown_github/h1_scatter-2.png" style="display: block; margin: auto;" />
+</p>
 
 The mean-difference and volcano plots suggest a fairly symmetric distribution of significant genes across the transcriptomic range.
 
@@ -307,7 +327,9 @@ plot_heatmap(mat, group = list(Condition = tmp$Condition),
              title = 'Top Genes:\nAgonist vs. Control')
 ```
 
+<p align='center'>
 <img src="AHR_markdown_files/figure-markdown_github/h1heat-1.png" style="display: block; margin: auto;" />
+</p>
 
 The two groups do not separate very neatly in this heatmap, suggesting that the differential expression between the conditions is not especially strong, at least not in the top 500 genes.
 
@@ -334,7 +356,9 @@ plot_md(res_h2, probes = 'EnsemblID',
         title = 'Mean-Difference Plot:\nAntagonist vs. Control')
 ```
 
+<p align='center'>
 <img src="AHR_markdown_files/figure-markdown_github/h2_scatter-1.png" style="display: block; margin: auto;" />
+</p>
 
 ``` r
 # Volcano plot
@@ -342,7 +366,9 @@ plot_volcano(res_h2, probes = 'EnsemblID', y = 'p',
              title = 'Volcano Plot:\nAntagonist vs. Control')
 ```
 
+<p align='center'>
 <img src="AHR_markdown_files/figure-markdown_github/h2_scatter-2.png" style="display: block; margin: auto;" />
+</p>
 
 The mean-difference and volcano plots suggest a fairly symmetric distribution of significant genes across the transcriptomic range.
 
@@ -359,6 +385,8 @@ plot_heatmap(mat, group = list(Condition = tmp$Condition),
              title = 'Top Genes:\nAntagonist vs. Control')
 ```
 
+<p align='center'>
 <img src="AHR_markdown_files/figure-markdown_github/h2heat-1.png" style="display: block; margin: auto;" />
+</p>
 
 Separation across the conditions is still imperfect, but somewhat stronger than in the agonist vs. control test.
